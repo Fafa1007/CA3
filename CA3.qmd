@@ -1,6 +1,6 @@
 ---
 title: "CA3"
-author: "ESNCHR001"
+author: "Evagelos Batsis, Christopher Eason, Yastika Motilal"
 format: "pdf"
 ---
 
@@ -15,40 +15,51 @@ $$
 1.  Start with $Σe_i=λ_ie_i$ and note that Σ is positive definite.
 
 $$
-\Sigma e_p = \lambda_pe_p \newline 
-[\Sigma e_1 ....\Sigma e_p] \newline 
-[\lambda_i e_1 ....\lambda_p e_p] \newline 
+\Sigma e_p = \lambda_pe_p\ \ \ \ \ \ (1)
+$$ $$
+\Sigma e_p=[\Sigma e_1 ....\Sigma e_p]
+$$ $$
+[\lambda_i e_1 ....\lambda_p e_p]
+$$ $$
 [\lambda_i e_1 ....\lambda_p e_p] = e_p D_p \newline
 $$
 
 $$
-\Sigma e_p = e_p D_p \newline
-\Sigma^{-1} = e_p\ D_p^{-1}\ e_p^{-1}\ \newline
-\Sigma^{-1} = e_p\ D_p^{-1}\ e_p' \newline
-\Sigma^{-1} = \sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i' \ \ (1)
+\Sigma e_p = e_p D_p
+$$ $$
+\Sigma^{-1} = e_p\ D_p^{-1}\ e_p^{-1}\ 
+$$ $$
+\Sigma^{-1} = e_p\ D_p^{-1}\ e_p' 
+$$ $$
+\Sigma^{-1} = \sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i' \ \\  (2) \newline
 $$
 
-$$ 
-\Sigma = e_p\ D_p\ e_p^{-1} \newline
-\Sigma = e_p\ D_p\ e_p' \newline 
-\Sigma = e_p\ D_p\ e_p^{-1} \newline
-\Sigma = \sum_{i=1}^{p}\ e_i\ \lambda_i\ e_i'\ \ \ (2)
-$$
+
+------------------------------------------------------------------------
 
 2.  Using this, rewrite $(X-\mu)' \Sigma^{-1}\ (X-\mu)$ as the sum of p squared variables
 
 $$
-(X-\mu)' \Sigma^{-1}\ (X-\mu) \newline
-= (X-\mu)'\ (\sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i')\ (X-\mu) \ \ (1)\newline
-= \sum_{i=1}^{p} \lambda_i^{-1}\ (X-\mu)'\ e_i\ e_i'\ (X-\mu) \newline
-= \sum_{i=1}^{p} \lambda_i^{-1}\ [e_i'\ (X-\mu)]^2 \newline
+(X-\mu)' \Sigma^{-1}\ (X-\mu)
+$$ $$
+= (X-\mu)'\ (\sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i')\ (X-\mu) \ \ \ \ \ (2) 
+$$ $$
+= \sum_{i=1}^{p} \lambda_i^{-1}\ (X-\mu)'\ e_i\ e_i'\ (X-\mu)
+$$ $$
+= \sum_{i=1}^{p} \lambda_i^{-1}\ [e_i'\ (X-\mu)]^2
+$$ $$
 = \sum_{i=1}^{p} [\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]^2 \newline
 $$
+
+------------------------------------------------------------------------
 
 3.  Showing that this vector i.e. $[\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]$ is a multivariate normal with zero mean and identity covariance
 
 $$
-A\ X \sim N_q (A\mu,\ A\Sigma A') \newline
+A\ X \sim N_q (A\mu,\ A\Sigma A') 
+$$
+
+$$
 [\frac{1}{\sqrt{\lambda_i}} e_i']\ [X-\mu] \sim N[0, [(\frac{1}{\sqrt{\lambda_i}} e_i')\ \Sigma\ (\frac{1}{\sqrt{\lambda_i}} e_i')']] \newline
 $$
 
@@ -57,12 +68,126 @@ Firstly, since X- $\mu$ is centered, we know that the [Mean]{.underline} of this
 Secondly, to show that the [Variance]{.underline} of this vector is equal to the identity matrix ...
 
 $$
-(\frac{1}{\sqrt{\lambda_i}} e_i')\ \Sigma\ (\frac{1}{\sqrt{\lambda_i}} e_i')' \newline
-= \frac{1}{\sqrt{\lambda_i}} e_i'\ \Sigma\ \frac{1}{\sqrt{\lambda_i}} e_i \newline
-= \frac{1}{\lambda_i} e_i'\ \Sigma\ e_i ' \newline
-= \frac{1}{\sqrt{\lambda_i}} e_i'\ \Sigma\ \frac{1}{\sqrt{\lambda_i}} e_i \newline
-= \frac{1}{\sqrt{\lambda_i}} e_i'\ (\sum_{i=1}^{p}\ e_i\ \lambda_i\ e_i')\ \frac{1}{\sqrt{\lambda_i}} e_i \ \ \ (2)\newline
-= \frac{1}{\lambda_i}\ \sum_{i=1}^{p}\ e_i'\  e_i\ \lambda_i\ e_i'\ e_i \newline
-= \sum_{i=1}^{p}\ \frac{1}{\lambda_i}\ I \  \lambda_i\ I \newline
-= \frac{1}{\lambda_i}\ \sum_{i=1}^{p}\ I \  \lambda_i\ I
+(\frac{1}{\sqrt{\lambda_i}} e_i')\ \Sigma\ (\frac{1}{\sqrt{\lambda_i}} e_i')'
+$$ $$
+= \frac{1}{\sqrt{\lambda_i}} e_i'\ \Sigma\ \frac{1}{\sqrt{\lambda_i}} e_i 
+$$ $$
+= \frac{1}{\lambda_i} e_i'\ \Sigma\ e_i 
+$$ $$
+= \frac{1}{\lambda_i} e_i'\ \lambda_i\ e_i \ \ \ (1)
+$$ $$
+= I 
 $$
+Remembering that $e_i'\ e_i = I$ because the eigen vectors are orthogonal to each other 
+
+Therefore
+$$
+[\frac{1}{\sqrt{\lambda_i}} e_i']\ [X-\mu] = Z_i \sim N[0, I] \newline
+$$
+
+------------------------------------------------------------------------
+
+4.  Finally showing Q.E.D
+
+$$
+(X-\mu)' \Sigma^{-1}\ (X-\mu)\ \ = \sum_{i=1}^{p} [\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]^2\ \ = \sum_{i=1}^{p} Z_i^2 \sim \chi_p^2
+$$
+
+------------------------------------------------------------------------
+
+\newpage
+
+# Question 2
+
+$$
+\begin{bmatrix}
+x1\\x2\\x3\\x4\\x5 
+\end{bmatrix}
+\sim
+N_5(\begin{bmatrix} 5\\0\\-2\\6\\2\end{bmatrix},
+\begin{bmatrix}
+8 & 3 & -1 & 0 & 5 \\
+3 & 12 & 2 & 2 & -2 \\
+-1 & 2 & 9 & 0 & 1 \\
+0 & 2 & 0 & 8 & 2 \\
+5 & -2 & 1 & 2 & 10  \\
+\end{bmatrix} )
+$$
+
+Now define $X1 = \begin{bmatrix}x1\\x2\\x4\end{bmatrix}$ and $X2 = \begin{bmatrix}x3\\x5\end{bmatrix}$. Find the conditional (joint) distribution of $X1|X2 = \begin{bmatrix}-1\\2\end{bmatrix}$
+
+------------------------------------------------------------------------
+
+1.  First change the matrix around
+
+$$
+\begin{bmatrix}
+x1\\x2\\x4\\\hline x3\\x5 
+\end{bmatrix}
+\sim
+N_5(\begin{bmatrix} 5\\0\\6\\ \hline -2\\2\end{bmatrix},
+\begin{bmatrix}
+8 & 3 & 0\ \ \ |& -1 & 5 \\
+3 & 12 & 2\ \ \ | & 2 & -2 \\
+0 & 2 & 8\ \ \ | & 0 & 2 \\ \hline 
+-1 & 2 & 0\ \ \ | & 9 & 1 \\
+5 & -2 & 2\ \ \ | & 1 & 10  \\
+\end{bmatrix} )
+$$
+
+$$
+X1 | X2 = \begin{bmatrix}-1\\2\\\end{bmatrix} \sim N (E[X1 | X2], cov(X1,x2))
+$$
+
+$$
+\mu_1 = \begin{bmatrix}5\\0\\6\\\end{bmatrix} \newline
+$$ $$
+\mu_2 = \begin{bmatrix}-2\\2\\\end{bmatrix} \newline
+$$ $$
+\Sigma_{11} = \begin{bmatrix}8 & 3&0\\3&12&2\\0&2&8\end{bmatrix} \newline
+$$ $$
+\Sigma_{12} = \begin{bmatrix}-1 & 5\\2&-2\\0&2\end{bmatrix} \newline
+$$ $$
+\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} \newline
+$$ $$
+\Sigma_{22} = \begin{bmatrix}9 & 1\\1&10\end{bmatrix} \newline
+$$ $$
+\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} \newline
+$$ $$
+X_2 = \begin{bmatrix}-1\\2\end{bmatrix}
+$$
+
+
+------------------------------------------------------------------------
+
+2.  Calculate the $E[X1 | X2]$
+
+$$
+E[X1 | X2] = \mu_1+\Sigma_{12}\ \Sigma_{22}^{-1}(X_2-\ \mu_{2})
+$$
+
+```{r, echo= FALSE}
+e11 <- matrix(c(8, 3, 0, 3, 12, 2, 0, 2, 8), nrow = 3, ncol = 3, byrow = TRUE)
+e12 <- matrix(c(-1, 5, 2, -2, 0, 2), nrow = 3, ncol = 2, byrow = TRUE)
+e21 <- t(e12)
+e22 <- matrix(c(9, 1, 1, 10), nrow = 2, ncol = 2, byrow = TRUE)
+u1 <- c(5, 0, 6)
+u2 <- c(-2, 2)
+x <- c(-1, 2)
+
+# E(X1 | X2)
+print (round(u1 + e12 %*% solve(e22) %*% (x - u2), 3))
+```
+
+------------------------------------------------------------------------
+
+3.  Calculate $cov[X1, X2]$
+
+$$
+Cov(X1, X2) = \Sigma_{11} - \Sigma{12}\ \Sigma_{22}^{-1}\ \Sigma_{21}
+$$
+
+```{r, echo= FALSE}
+# Cov(X1 | X2)
+print(round(e11 - e12 %*% solve(e22) %*% e21, 3))
+```
