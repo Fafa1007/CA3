@@ -1,11 +1,68 @@
 ---
 title: "CA3"
+author: "ESNCHR001"
+format: "pdf"
 ---
 
-## Quarto
+# Question 1:
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Let $X~N_p(\mu,\Sigma)$ with $|\Sigma|>0$. Using the spectral decomposition of the covariance matrix, prove that
 
-```{r}
-1 + 1
-```
+$$
+(X-\mu)'\Sigma^{-1}(X-\mu)\ ~\ \chi_p^2
+$$
+
+1.  Start with $Σe_i=λ_ie_i$ and note that Σ is positive definite.
+
+$$
+\Sigma e_p = \lambda_pe_p \newline 
+[\Sigma e_1 ....\Sigma e_p] \newline 
+[\lambda_i e_1 ....\lambda_p e_p] \newline 
+[\lambda_i e_1 ....\lambda_p e_p] = e_p D_p \newline
+$$
+
+$$
+\Sigma e_p = e_p D_p \newline
+\Sigma^{-1} = e_p\ D_p^{-1}\ e_p^{-1}\ \newline
+\Sigma^{-1} = e_p\ D_p^{-1}\ e_p' \newline
+\Sigma^{-1} = \sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i' \ \ (1)
+$$
+
+$$ 
+\Sigma = e_p\ D_p\ e_p^{-1} \newline
+\Sigma = e_p\ D_p\ e_p' \newline 
+\Sigma = e_p\ D_p\ e_p^{-1} \newline
+\Sigma = \sum_{i=1}^{p}\ e_i\ \lambda_i\ e_i'\ \ \ (2)
+$$
+
+2.  Using this, rewrite $(X-\mu)' \Sigma^{-1}\ (X-\mu)$ as the sum of p squared variables
+
+$$
+(X-\mu)' \Sigma^{-1}\ (X-\mu) \newline
+= (X-\mu)'\ (\sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i')\ (X-\mu) \ \ (1)\newline
+= \sum_{i=1}^{p} \lambda_i^{-1}\ (X-\mu)'\ e_i\ e_i'\ (X-\mu) \newline
+= \sum_{i=1}^{p} \lambda_i^{-1}\ [e_i'\ (X-\mu)]^2 \newline
+= \sum_{i=1}^{p} [\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]^2 \newline
+$$
+
+3.  Showing that this vector i.e. $[\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]$ is a multivariate normal with zero mean and identity covariance
+
+$$
+A\ X \sim N_q (A\mu,\ A\Sigma A') \newline
+[\frac{1}{\sqrt{\lambda_i}} e_i']\ [X-\mu] \sim N[0, [(\frac{1}{\sqrt{\lambda_i}} e_i')\ \Sigma\ (\frac{1}{\sqrt{\lambda_i}} e_i')']] \newline
+$$
+
+Firstly, since X- $\mu$ is centered, we know that the [Mean]{.underline} of this vector is equal to zero.
+
+Secondly, to show that the [Variance]{.underline} of this vector is equal to the identity matrix ...
+
+$$
+(\frac{1}{\sqrt{\lambda_i}} e_i')\ \Sigma\ (\frac{1}{\sqrt{\lambda_i}} e_i')' \newline
+= \frac{1}{\sqrt{\lambda_i}} e_i'\ \Sigma\ \frac{1}{\sqrt{\lambda_i}} e_i \newline
+= \frac{1}{\lambda_i} e_i'\ \Sigma\ e_i ' \newline
+= \frac{1}{\sqrt{\lambda_i}} e_i'\ \Sigma\ \frac{1}{\sqrt{\lambda_i}} e_i \newline
+= \frac{1}{\sqrt{\lambda_i}} e_i'\ (\sum_{i=1}^{p}\ e_i\ \lambda_i\ e_i')\ \frac{1}{\sqrt{\lambda_i}} e_i \ \ \ (2)\newline
+= \frac{1}{\lambda_i}\ \sum_{i=1}^{p}\ e_i'\  e_i\ \lambda_i\ e_i'\ e_i \newline
+= \sum_{i=1}^{p}\ \frac{1}{\lambda_i}\ I \  \lambda_i\ I \newline
+= \frac{1}{\lambda_i}\ \sum_{i=1}^{p}\ I \  \lambda_i\ I
+$$
