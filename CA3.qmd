@@ -34,7 +34,6 @@ $$ $$
 \Sigma^{-1} = \sum_{i=1}^{p}\ e_i\ \lambda_i^{-1}\ e_i' \ \\  (2) \newline
 $$
 
-
 ------------------------------------------------------------------------
 
 2.  Using this, rewrite $(X-\mu)' \Sigma^{-1}\ (X-\mu)$ as the sum of p squared variables
@@ -77,11 +76,9 @@ $$ $$
 = \frac{1}{\lambda_i} e_i'\ \lambda_i\ e_i \ \ \ (1)
 $$ $$
 = I 
-$$
-Remembering that $e_i'\ e_i = I$ because the eigen vectors are orthogonal to each other 
+$$ Remembering that $e_i'\ e_i = I$ because the eigen vectors are orthogonal to each other
 
-Therefore
-$$
+Therefore $$
 [\frac{1}{\sqrt{\lambda_i}} e_i']\ [X-\mu] = Z_i \sim N[0, I] \newline
 $$
 
@@ -92,6 +89,8 @@ $$
 $$
 (X-\mu)' \Sigma^{-1}\ (X-\mu)\ \ = \sum_{i=1}^{p} [\frac{1}{\sqrt{\lambda_i}}\ e_i'\ (X-\mu)]^2\ \ = \sum_{i=1}^{p} Z_i^2 \sim \chi_p^2
 $$
+
+The sum of p independent standard normal (N(0,1) variables squared follows a chi-squared distribution with p degrees of freedom.
 
 ------------------------------------------------------------------------
 
@@ -140,30 +139,37 @@ X1 | X2 = \begin{bmatrix}-1\\2\\\end{bmatrix} \sim N (E[X1 | X2], cov(X1,x2))
 $$
 
 $$
-\mu_1 = \begin{bmatrix}5\\0\\6\\\end{bmatrix} \newline
+\mu_1 = \begin{bmatrix}5\\0\\6\\\end{bmatrix} 
 $$ $$
-\mu_2 = \begin{bmatrix}-2\\2\\\end{bmatrix} \newline
+\mu_2 = \begin{bmatrix}-2\\2\\\end{bmatrix} 
 $$ $$
-\Sigma_{11} = \begin{bmatrix}8 & 3&0\\3&12&2\\0&2&8\end{bmatrix} \newline
+\Sigma_{11} = \begin{bmatrix}8 & 3&0\\3&12&2\\0&2&8\end{bmatrix} 
 $$ $$
-\Sigma_{12} = \begin{bmatrix}-1 & 5\\2&-2\\0&2\end{bmatrix} \newline
+\Sigma_{12} = \begin{bmatrix}-1 & 5\\2&-2\\0&2\end{bmatrix} 
 $$ $$
-\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} \newline
+\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} 
 $$ $$
-\Sigma_{22} = \begin{bmatrix}9 & 1\\1&10\end{bmatrix} \newline
+\Sigma_{22} = \begin{bmatrix}9 & 1\\1&10\end{bmatrix} 
 $$ $$
-\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} \newline
+\Sigma_{21} = \begin{bmatrix}-1 & 2&0\\5&-2&2\end{bmatrix} 
 $$ $$
 X_2 = \begin{bmatrix}-1\\2\end{bmatrix}
 $$
-
 
 ------------------------------------------------------------------------
 
 2.  Calculate the $E[X1 | X2]$
 
 $$
-E[X1 | X2] = \mu_1+\Sigma_{12}\ \Sigma_{22}^{-1}(X_2-\ \mu_{2})
+E[X1 | X2] = \mu_1+\Sigma_{12}\ \Sigma_{22}^{-1}(X_2-\ \mu_{2}) 
+$$ $$
+E[X1 | X2] = \begin{bmatrix}5\\0\\6\\\end{bmatrix} + \begin{bmatrix}-1&5\\2&-3\\0&2\\\end{bmatrix} \begin{bmatrix}9&1\\1&10\\\end{bmatrix}^{-1} (\begin{bmatrix}-1\\2\\\end{bmatrix} - \begin{bmatrix}-2\\2\\\end{bmatrix})
+$$ $$
+E[X1 | X2] = \begin{bmatrix}5\\0\\6\\\end{bmatrix}-\begin{bmatrix}-1&5\\2&-3\\0&2\\\end{bmatrix}\begin{bmatrix}\frac{10}{89}&\frac{-1}{89}\\\frac{-1}{89} & \frac{90}{89}\\\end{bmatrix} \begin{bmatrix}1\\0\\\end{bmatrix} 
+$$ $$ 
+E[X1 | X2] = \begin{bmatrix}5\\0\\6\\\end{bmatrix} - \begin{bmatrix}\frac{-15}{89}\\\frac{22}{89}\\\frac{-2}{89}\\\end{bmatrix}
+$$ $$ 
+E[X1 | X2]=  \begin{bmatrix}\frac{430}{89}\\\frac{22}{89}\\\frac{532}{89}\\\end{bmatrix}  
 $$
 
 ```{r, echo= FALSE}
@@ -176,6 +182,7 @@ u2 <- c(-2, 2)
 x <- c(-1, 2)
 
 # E(X1 | X2)
+print( "R output of the same answer")
 print (round(u1 + e12 %*% solve(e22) %*% (x - u2), 3))
 ```
 
@@ -185,9 +192,28 @@ print (round(u1 + e12 %*% solve(e22) %*% (x - u2), 3))
 
 $$
 Cov(X1, X2) = \Sigma_{11} - \Sigma{12}\ \Sigma_{22}^{-1}\ \Sigma_{21}
+$$ $$
+Cov(X1, X2) = \begin{bmatrix} 8&3&0\\3&12&2\\0&2&8\\\end{bmatrix} - \begin{bmatrix}-1&5\\2&-2\\0&2\\\end{bmatrix} \begin{bmatrix}9&1\\1&10\\\end{bmatrix}^{-1} \begin{bmatrix}-1&2&0\\5&-2&1\\\end{bmatrix}
+$$ $$
+Cov(X1, X2) = \begin{bmatrix} 8&3&0\\3&12&2\\0&2&8\\\end{bmatrix} - \begin{bmatrix}-1&5\\2&-2\\0&2\\\end{bmatrix} \begin{bmatrix}\frac{10}{89}&\frac{-1}{89}\\\frac{-1}{89}&\frac{90}{89}\\\end{bmatrix} \begin{bmatrix}-1&2&0\\5&-2&1\\\end{bmatrix}
+$$ $$
+Cov(X1, X2) = \begin{bmatrix} 8&3&0\\3&12&2\\0&2&8\\\end{bmatrix} - \begin{bmatrix}\frac{245}{89}&\frac{-122}{89}&\frac{92}{89}\\\frac{-122}{89}&\frac{84}{89}&\frac{-40}{89} \\ \frac{92}{89}&\frac{-40}{89}&\frac{36}{89}\\\end{bmatrix}
+$$ $$
+Cov(X1, X2) = \begin{bmatrix} \frac{467}{89}&\frac{389}{89}&\frac{-92}{89}\\\frac{389}{89}&\frac{984}{89}&\frac{218}{89}\\\frac{-92}{89}&\frac{218}{89}&\frac{676}{89}\\\end{bmatrix}
 $$
 
 ```{r, echo= FALSE}
 # Cov(X1 | X2)
+print("R output of the same answer")
 print(round(e11 - e12 %*% solve(e22) %*% e21, 3))
 ```
+
+------------------------------------------------------------------------
+
+Therefore
+
+$$
+X1 | X2 = \begin{bmatrix}-1\\2\\\end{bmatrix} \sim N (E[X1 | X2], cov(X1,x2))
+$$ $$ 
+X1 | X2 = \begin{bmatrix}-1\\2\\\end{bmatrix} \sim N (\begin{bmatrix}\frac{430}{89}\\\frac{22}{89}\\\frac{532}{89}\\\end{bmatrix} , \begin{bmatrix} \frac{467}{89}&\frac{389}{89}&\frac{-92}{89}\\\frac{389}{89}&\frac{984}{89}&\frac{218}{89}\\\frac{-92}{89}&\frac{218}{89}&\frac{676}{89}\\\end{bmatrix}) 
+$$
